@@ -1,0 +1,22 @@
+# Environment variables (NEVER commit this!)
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node/npm (if used)
+node_modules/
+package-lock.json
+
+# PHP
+vendor/
+
+# Logs
+*.log

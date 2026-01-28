@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avocado - University Marketplace & Community Portal</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="assets/main_logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <!-- ============ HEADER ============ -->
+  <header>
+    <div class="header-container">
+      <div class="logo-section">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+          <path fill="#795548" d="M28,10c-0.6,0-1-0.4-1-1c0-3.4,2.2-5.6,2.3-5.7c0.4-0.4,1-0.4,1.4,0c0.4,0.4,0.4,1,0,1.4 c0,0-1.7,1.8-1.7,4.3C29,9.6,28.6,10,28,10z"/>
+          <path fill="#558b2f" d="M25.1,7C17.5,7,10,20.4,10,32c0,8,6.4,13,14,13s14-5,14-13c0-9.5-5.6-11.3-5.6-20.8 C32.4,8.7,30,8,28,8C27.2,8,27,7,25.1,7z"/>
+          <path fill="#dce775" d="M33.4,22.5c-1.4-2.8-3-6.1-3-11.3c0-1.1-1.9-1.2-2.4-1.2c-0.9,0-1.6-0.4-1.9-0.7 c-0.3-0.2-0.4-0.3-1-0.3C19,9,12,21.3,12,32c0,7.2,6,11,12,11s12-3.8,12-11C36,27.7,34.8,25.2,33.4,22.5z"/>
+          <path fill="#fff59d" d="M15,33c0-5,4-16,9-16s9,11,9,16s-4,9-9,9S15,38,15,33z"/>
+          <path fill="#962005" d="M30,33c0,3.3-2.7,6-6,6s-6-2.7-6-6s2.7-10,6-10S30,29.7,30,33z"/>
+          <path fill="#bf360c" d="M24,23c-3.3,0-6,6.7-6,10c0,0.4,0,0.7,0.1,1.1C19,35.3,20.4,36,22,36c4,0,6-2.2,6-5 c0-3.9-0.8-6-1.9-7.1C25.4,23.3,24.7,23,24,23z"/>
+        </svg>
+        <span>AVOCADO</span>
+      </div>
+      
+      <nav>
+        <a href="index.html" class="active">HOME</a>
+        <a href="pages/marketplace.html">MARKETPLACE</a>
+        <a href="pages/quad.html">THE QUAD</a>
+        <a href="pages/dorm-alerts.html">ALERTS</a>
+        <a href="pages/messages.html">MESSAGES</a>
+      </nav>
+
+      <div class="user-section">
+        <div class="cart-icon" onclick="openNotifications()">
+          🔔
+          <span class="cart-count" id="notification-count">0</span>
+        </div>
+        <div class="user-profile" id="user-profile-btn" onclick="openUserMenu()">
+          <span id="user-initial">A</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ HERO SECTION ============ -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to Avocado</h1>
+      <p>Your University's Marketplace & Community Hub</p>
+    </div>
+  </section>
+
+  <!-- ============ FILTER BAR ============ -->
+  <div class="filter-bar">
+    <div class="filter-buttons">
+      <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
+      <button class="filter-btn" onclick="filterProducts('buy')">Buy</button>
+      <button class="filter-btn" onclick="filterProducts('sell')">Sell</button>
+      <button class="filter-btn" onclick="filterProducts('rent')">Rent</button>
+      <button class="filter-btn" onclick="filterProducts('free')">Free</button>
+    </div>
+    <select class="sort-dropdown" id="sort-dropdown" onchange="sortProducts()">
+      <option value="">Default Sorting</option>
+      <option value="price-low">Price: Low to High</option>
+      <option value="price-high">Price: High to Low</option>
+      <option value="newest">Newest First</option>
+      <option value="popular">Most Popular</option>
+    </select>
+  </div>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <div class="container">
+    <div class="layout-with-sidebar">
+      <!-- Products Grid -->
+      <div>
+        <div class="grid" id="products-grid">
+          <!-- Products will be loaded here by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <!-- Active Rentals -->
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Active Rentals</h3>
+          <div id="active-rentals">
+            <p class="text-muted">No active rentals</p>
+          </div>
+        </div>
+
+        <!-- Top Items -->
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Top Items</h3>
+          <div id="top-items">
+            <p class="text-muted">Loading...</p>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="sidebar-section">
+          <h3 class="sidebar-title">Quick Actions</h3>
+          <a href="pages/marketplace.html" class="sidebar-item">Post Item for Sale</a>
+          <a href="pages/quad.html" class="sidebar-item">Ask a Question</a>
+          <a href="pages/messages.html" class="sidebar-item">View Messages</a>
+          <a href="pages/profile.html" class="sidebar-item">My Profile</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>ABOUT AVOCADO</h3>
+        <p style="font-size: 14px; color: #ccc; margin-bottom: 12px;">Your university's ultimate marketplace and community platform. Buy, sell, rent, or donate with fellow students.</p>
+      </div>
+      <div class="footer-section">
+        <h3>MARKETPLACE</h3>
+        <a href="#">Buy</a>
+        <a href="#">Sell</a>
+        <a href="#">Rent</a>
+        <a href="#">Donate</a>
+      </div>
+      <div class="footer-section">
+        <h3>COMMUNITY</h3>
+        <a href="#">The Quad</a>
+        <a href="#">Dorm Alerts</a>
+        <a href="#">Messages</a>
+        <a href="#">Events</a>
+      </div>
+      <div class="footer-section">
+        <h3>SUPPORT</h3>
+        <a href="#">Help Center</a>
+        <a href="#">Safety Tips</a>
+        <a href="#">Report Issue</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Avocado. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ============ USER MENU MODAL ============ -->
+  <div class="modal" id="user-menu-modal">
+    <div class="modal-content" style="max-width: 350px; margin-top: -200px;">
+      <div class="modal-header">
+        <h2 class="modal-title">Account</h2>
+        <button class="modal-close" onclick="closeUserMenu()">&times;</button>
+      </div>
+      <div id="user-menu-content">
+        <!-- User menu items will be populated based on login state -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ LOGIN MODAL ============ -->
+  <div class="modal" id="login-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Sign In</h2>
+        <button class="modal-close" onclick="closeLoginModal()">&times;</button>
+      </div>
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Sign In</button>
+        <p class="text-center" style="margin-top: 16px; font-size: 14px;">
+          Don't have an account? <a href="#" onclick="switchToRegister()">Register</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ REGISTER MODAL ============ -->
+  <div class="modal" id="register-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Create Account</h2>
+        <button class="modal-close" onclick="closeRegisterModal()">&times;</button>
+      </div>
+      <form onsubmit="handleRegister(event)">
+        <div class="form-group">
+          <label for="reg-name">Full Name</label>
+          <input type="text" id="reg-name" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-email">Personal Email</label>
+          <input type="email" id="reg-email" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-uni-email">University Email (.edu)</label>
+          <input type="email" id="reg-uni-email" placeholder="user@university.edu" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-password">Password</label>
+          <input type="password" id="reg-password" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-password-confirm">Confirm Password</label>
+          <input type="password" id="reg-password-confirm" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Register</button>
+        <p class="text-center" style="margin-top: 16px; font-size: 14px;">
+          Already have an account? <a href="#" onclick="switchToLogin()">Sign In</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script src="js/marketplace.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
